@@ -66,7 +66,7 @@ public class ReportWriter {
 	 */
 	public void writeData(String[] line) throws IOException {
 		int height = getDataHeight(line[1], line[2]);
-		//each records = Nx3
+		// each records = Nx3
 		StringBuffer[][] dataLines = new StringBuffer[height * 3][];
 		for (int i = 0; i < height * 3; i++) {
 			dataLines[i] = new StringBuffer[3];
@@ -83,7 +83,7 @@ public class ReportWriter {
 			for (int j = 0; j < tempLength; j++)
 				dataLines[i][0].append(" ");
 		}
-		
+
 		// second border
 		for (int i = 0; i < height; i++)
 			dataLines[i][0].append(" | ");
@@ -154,10 +154,16 @@ public class ReportWriter {
 		curLength = 0;
 		curLine = 0;
 		for (int i = 0; i < tempName.size(); i++) {
+			if ((curLength == 0) && (tempName.get(i).toString().equals(" "))) {
+				continue;
+			}
 			curLength += tempName.get(i).length();
 			if (curLength <= properties.getThirdWidth()) {
-				if ((curLength != 1) || (!tempName.get(i).toString().equals(" ")))
+				if ((curLength != 1) || (!tempName.get(i).toString().equals(" "))) {
 					dataLines[curLine][2].append(tempName.get(i));
+					System.out.print(curLength + " ->");
+					System.out.println(tempName.get(i));
+				}
 			} else {
 				curLength = 0;
 				curLine++;
