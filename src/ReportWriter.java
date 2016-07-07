@@ -159,11 +159,8 @@ public class ReportWriter {
 			}
 			curLength += tempName.get(i).length();
 			if (curLength <= properties.getThirdWidth()) {
-				if ((curLength != 1) || (!tempName.get(i).toString().equals(" "))) {
+				if ((curLength != 1) || (!tempName.get(i).toString().equals(" ")))
 					dataLines[curLine][2].append(tempName.get(i));
-					System.out.print(curLength + " ->");
-					System.out.println(tempName.get(i));
-				}
 			} else {
 				curLength = 0;
 				curLine++;
